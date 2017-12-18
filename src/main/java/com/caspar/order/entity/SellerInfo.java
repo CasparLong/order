@@ -2,6 +2,7 @@ package com.caspar.order.entity;
 
 import com.caspar.order.entity.base.BaseDomain;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Table(name = "seller_info")
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SellerInfo extends BaseDomain implements Serializable {
     private static final long serialVersionUID = -6436301786833785662L;
 
