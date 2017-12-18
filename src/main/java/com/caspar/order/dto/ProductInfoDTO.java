@@ -1,4 +1,4 @@
-package com.caspar.order.response.dto;
+package com.caspar.order.dto;
 
 import com.caspar.order.entity.ProductInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,7 +37,7 @@ public class ProductInfoDTO {
         return productInfoDTOConverter.convert(this);
     }
 
-    public ProductInfoDTO convertFor(ProductInfo productInfo) {
+    public static ProductInfoDTO convertFor(ProductInfo productInfo) {
         ProductInfoDTO.ProductInfoDTOConverter productInfoDTOConverter = new ProductInfoDTO.ProductInfoDTOConverter();
         return productInfoDTOConverter.reverse().convert(productInfo);
     }

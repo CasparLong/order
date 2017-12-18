@@ -3,12 +3,13 @@ package com.caspar.order.controller;
 import com.caspar.order.entity.ProductCategory;
 import com.caspar.order.entity.ProductInfo;
 import com.caspar.order.response.ResponseBuilder;
-import com.caspar.order.response.dto.ProductDTO;
-import com.caspar.order.response.dto.ProductInfoDTO;
+import com.caspar.order.dto.ProductDTO;
+import com.caspar.order.dto.ProductInfoDTO;
 import com.caspar.order.response.dto.Response;
 import com.caspar.order.service.ProductCategoryService;
 import com.caspar.order.service.ProductInfoService;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/buyer/product")
+@Slf4j
 public class BuyerProductController {
 
     @Autowired
@@ -51,7 +53,7 @@ public class BuyerProductController {
             List<ProductInfoDTO> productInfoDTOList = Lists.newArrayList();
             for (ProductInfo productInfo : productInfos) {
                 if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
-                    ProductInfoDTO productInfoDTO = new ProductInfoDTO().convertFor(productInfo);
+                    ProductInfoDTO productInfoDTO = ProductInfoDTO.convertFor(productInfo);
                     productInfoDTOList.add(productInfoDTO);
                 }
             }

@@ -1,14 +1,18 @@
 package com.caspar.order.dto;
 
 import com.caspar.order.entity.OrderDetail;
+import com.caspar.order.entity.OrderMaster;
 import com.caspar.order.enums.OrderStatusEnum;
 import com.caspar.order.enums.PayStatusEnum;
 import com.caspar.order.util.EnumUtil;
 import com.caspar.order.util.serializer.Date2LongSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.google.common.base.Converter;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -21,6 +25,7 @@ import java.util.List;
  * @Date 2017-12-17
  */
 @Data
+@NoArgsConstructor
 @Builder
 public class OrderDTO {
 
@@ -86,6 +91,32 @@ public class OrderDTO {
     @JsonIgnore
     public PayStatusEnum getPayStatusEnum() {
         return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
+
+    public OrderMaster convertToOrderMaster() {
+        OrderDTOConverter orderDTOConverter = new OrderDTOConverter();
+        return orderDTOConverter.convert(this);
+    }
+
+    public static OrderDTO convertFor(OrderMaster orderMaster) {
+        OrderDTOConverter orderDTOConverter = new OrderDTOConverter();
+        return orderDTOConverter.reverse().convert(orderMaster);
+    }
+
+    private static class OrderDTOConverter extends Converter<OrderDTO, OrderMaster> {
+        @Override
+        protected OrderMaster doForward(OrderDTO orderDTO) {
+            OrderMaster orderMaster = new OrderMaster();
+            BeanUtils.copyProperties(orderDTO, orderMaster);
+            return orderMaster;
+        }
+
+        @Override
+        protected OrderDTO doBackward(OrderMaster orderMaster) {
+            OrderDTO orderDTO = new OrderDTO();
+            BeanUtils.copyProperties(orderMaster, orderDTO);
+            return orderDTO;
+        }
     }
 
 }

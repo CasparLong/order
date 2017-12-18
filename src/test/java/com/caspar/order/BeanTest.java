@@ -2,7 +2,7 @@ package com.caspar.order;
 
 import com.caspar.order.entity.ProductCategory;
 import com.caspar.order.entity.ProductInfo;
-import com.caspar.order.response.dto.ProductDTO;
+import com.caspar.order.dto.ProductDTO;
 import org.junit.Test;
 
 import java.math.BigDecimal;

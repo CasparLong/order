@@ -36,4 +36,10 @@ public interface ProductInfoService extends BaseService<ProductInfo> {
      */
     void increaseStock(List<CartDTO> cartDTOList);
 
+    /**
+     * 扣库存
+     *
+     * @param cartDTOList
+     */
+    void decreaseStock(List<CartDTO> cartDTOList);
 }

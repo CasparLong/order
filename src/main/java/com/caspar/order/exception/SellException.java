@@ -13,10 +13,10 @@ public class SellException extends RuntimeException {
     private Integer code;
 
     public SellException(ResponseEnum responseEnum) {
-        this(responseEnum.getMsg(), responseEnum.getCode());
+        this(responseEnum.getCode(), responseEnum.getMsg());
     }
 
-    public SellException(String message, Integer code) {
+    public SellException(Integer codeString, String message) {
         super(message);
         this.code = code;
     }

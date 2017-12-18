@@ -1,6 +1,7 @@
 package com.caspar.order.response.dto;
 
 import lombok.Builder;
+import lombok.Getter;
 
 /**
  * Description:
@@ -9,6 +10,7 @@ import lombok.Builder;
  * @Date 2017-12-16
  */
 @Builder
+@Getter
 public class Response {
 
     private Object data;
