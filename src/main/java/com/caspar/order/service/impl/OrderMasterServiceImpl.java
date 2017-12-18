@@ -20,12 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +55,7 @@ public class OrderMasterServiceImpl extends BaseServiceImpl<OrderMaster> impleme
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public OrderDTO create(OrderDTO orderDTO) {
         String orderId = IdGenerator.generate().toString();
         BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);

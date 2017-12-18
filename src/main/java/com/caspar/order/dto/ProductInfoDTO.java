@@ -3,7 +3,9 @@ package com.caspar.order.dto;
 import com.caspar.order.entity.ProductInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Converter;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
@@ -15,6 +17,8 @@ import java.math.BigDecimal;
  * @Date 2017-12-16
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductInfoDTO {
 
     @JsonProperty("id")

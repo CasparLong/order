@@ -9,6 +9,7 @@ import com.caspar.order.util.serializer.Date2LongSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.common.base.Converter;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class OrderDTO {
 
