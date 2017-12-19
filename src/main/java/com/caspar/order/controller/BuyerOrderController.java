@@ -1,6 +1,7 @@
 package com.caspar.order.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.caspar.order.constant.Constants;
 import com.caspar.order.converter.OrderForm2OrderDTOConverter;
 import com.caspar.order.dto.OrderDTO;
 import com.caspar.order.enums.ResponseEnum;
@@ -70,7 +71,7 @@ public class BuyerOrderController {
 
         PageHelper.startPage(page, size);
         List<OrderDTO> orderDTOList = orderMasterService.selectByBuyerOpenId(openid);
-        PageInfo<OrderDTO> pageInfo = new PageInfo<>(orderDTOList, 5);
+        PageInfo<OrderDTO> pageInfo = new PageInfo<>(orderDTOList, Constants.NAVIGATE_PAGES);
 
         return ResponseBuilder.buildSuccess(pageInfo);
     }
