@@ -21,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -99,13 +100,35 @@ public class OrderMasterServiceImpl extends BaseServiceImpl<OrderMaster> impleme
     }
 
     @Override
-    public OrderDTO findOne(String orderId) {
-        return null;
+    public OrderDTO selectByOrderId(String orderId) {
+        OrderMaster queryEntity = new OrderMaster();
+        queryEntity.setOrderId(orderId);
+        OrderMaster orderMaster = this.oneSelect(queryEntity);
+
+        if (orderMaster == null) {
+            throw new SellException(ResponseEnum.ORDER_NOT_EXIST);
+        }
+
+        List<OrderDetail> orderDetailList = orderDetailService.selectByOrderId(orderId);
+        if (CollectionUtils.isEmpty(orderDetailList)) {
+            throw new SellException(ResponseEnum.ORDERDETAIL_NOT_EXIST);
+        }
+
+        OrderDTO orderDTO = OrderDTO.convertFor(orderMaster);
+        orderDTO.setOrderDetailList(orderDetailList);
+
+        return orderDTO;
     }
 
     @Override
-    public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
-        return null;
+    public List<OrderDTO> selectByBuyerOpenId(String buyerOpenid) {
+        OrderMaster queryEntity = new OrderMaster();
+        queryEntity.setBuyerOpenid(buyerOpenid);
+        List<OrderMaster> orderMasterList = this.select(queryEntity);
+
+        List<OrderDTO> orderDTOList = orderMasterList.stream().map(e -> OrderDTO.convertFor(e)).collect(Collectors.toList());
+
+        return orderDTOList;
     }
 
     @Override
@@ -124,7 +147,7 @@ public class OrderMasterServiceImpl extends BaseServiceImpl<OrderMaster> impleme
     }
 
     @Override
-    public Page<OrderDTO> findList(Pageable pageable) {
+    public Page<OrderDTO> selectByBuyerOpenId(Pageable pageable) {
         return null;
     }
 

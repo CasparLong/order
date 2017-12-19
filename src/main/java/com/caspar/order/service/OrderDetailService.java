@@ -3,6 +3,8 @@ package com.caspar.order.service;
 import com.caspar.order.entity.OrderDetail;
 import com.caspar.order.service.base.BaseService;
 
+import java.util.List;
+
 /**
  * Description:
  *
@@ -11,6 +13,6 @@ import com.caspar.order.service.base.BaseService;
  */
 public interface OrderDetailService extends BaseService<OrderDetail> {
 
-
+    List<OrderDetail> selectByOrderId(String orderId);
 
 }

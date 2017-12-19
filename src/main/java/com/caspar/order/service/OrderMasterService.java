@@ -32,12 +32,12 @@ public interface OrderMasterService extends BaseService<OrderMaster> {
     /**
      * 查询单个订单
      */
-    OrderDTO findOne(String orderId);
+    OrderDTO selectByOrderId(String orderId);
 
     /**
-     * 查询订单列表
+     * 根据openId查询订单列表
      */
-    Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
+    List<OrderDTO> selectByBuyerOpenId(String buyerOpenid);
 
     /**
      * 取消订单
@@ -57,6 +57,6 @@ public interface OrderMasterService extends BaseService<OrderMaster> {
     /**
      * 查询订单列表
      */
-    Page<OrderDTO> findList(Pageable pageable);
+    Page<OrderDTO> selectByBuyerOpenId(Pageable pageable);
 
 }
