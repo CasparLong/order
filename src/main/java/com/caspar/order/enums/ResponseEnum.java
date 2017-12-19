@@ -15,6 +15,11 @@ public enum ResponseEnum {
 
     SUCCESS(200, "成功"),
     FAIL(400, "失败"),
+    JSON_PARSE_ERROR(401, "JSON解析出错"),
+    SYSTEM_ERROR(900, "系统繁忙"),
+    ILLEGAL_ARGUMENT(401,"非法参数"),
+    PROGRAM_ERROR(900,"程序打包异常,请联系管理员"),
+
 
     PARAM_ERROR(1, "参数不正确"),
 
@@ -25,6 +30,6 @@ public enum ResponseEnum {
     ;
 
     private Integer code;
-    private String msg;
+    private String message;
 
 }

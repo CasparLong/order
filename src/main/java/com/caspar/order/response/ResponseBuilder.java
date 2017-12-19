@@ -15,15 +15,15 @@ public class ResponseBuilder {
     }
 
     public static Response buildSuccess() {
-        return build(true, ResponseEnum.SUCCESS.getCode(), (Object) null, ResponseEnum.SUCCESS.getMsg());
+        return build(true, ResponseEnum.SUCCESS.getCode(), (Object) null, ResponseEnum.SUCCESS.getMessage());
     }
 
     public static Response buildSuccess(Object data) {
-        return build(true, ResponseEnum.SUCCESS.getCode(), data, ResponseEnum.SUCCESS.getMsg());
+        return build(true, ResponseEnum.SUCCESS.getCode(), data, ResponseEnum.SUCCESS.getMessage());
     }
 
     public static Response buildFail() {
-        return build(false, ResponseEnum.FAIL.getCode(), (Object) null, ResponseEnum.FAIL.getMsg());
+        return build(false, ResponseEnum.FAIL.getCode(), (Object) null, ResponseEnum.FAIL.getMessage());
     }
 
     public static Response buildFail(String msg) {
